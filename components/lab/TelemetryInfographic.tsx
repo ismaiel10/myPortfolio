@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, Pause, Activity, Radio, Gauge, Zap, Flame, BarChart3, RefreshCw } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Play, Pause, Activity, Radio, Gauge, Zap, Flame, BarChart3 } from 'lucide-react';
 
 export const TelemetryInfographic: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -213,117 +212,117 @@ export const TelemetryInfographic: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative rounded-2xl bg-surface-subtle border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+    <div className="relative rounded-2xl bg-[#181817] text-white border border-black/[0.1] shadow-editorial overflow-hidden flex flex-col">
       
       {/* Top Header */}
-      <div className="p-4 sm:p-5 border-b border-white/10 bg-surface/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+      <div className="p-5 sm:p-6 border-b border-white/[0.08] bg-[#141413] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-accent-olive" />
           <div>
-            <h4 className="font-display font-bold text-white text-base tracking-wide flex items-center gap-2">
-              Style 02 · Engineering Telemetry & Motion Infographic
+            <h4 className="font-serif text-lg font-medium text-white tracking-wide">
+              Engineering Telemetry & Signal FFT
             </h4>
-            <span className="font-mono text-xs text-cyan-400/90 tracking-wider">
-              REAL-TIME SENSOR BUS // MULTI-CHANNEL OSCILLOSCOPE & FFT
+            <span className="font-mono text-xs text-stone-light tracking-wider">
+              Real-time multi-channel sensor harmonics & acoustic frequency analysis
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Badge variant="cyan" pulse size="sm">
-            {isRunning ? 'TRANSMITTING' : 'STREAM HALTED'}
-          </Badge>
-          <span className="text-[11px] font-mono text-slate-400 px-2 py-0.5 rounded bg-white/5 border border-white/10 hidden sm:inline">
-            SAMPLES: 48,000 Hz
+        <div className="flex items-center gap-2 font-mono text-[11px]">
+          <span className="px-3 py-1 rounded-full bg-accent-olive/20 border border-accent-olive/40 text-stone-light">
+            {isRunning ? 'Status: Active Feed' : 'Status: Paused'}
+          </span>
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-light hidden sm:inline">
+            48,000 Hz Sample Bus
           </span>
         </div>
       </div>
 
       {/* Main Grid: Telemetry Gauges + Oscilloscope */}
-      <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#07080c]">
+      <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#141413]">
         
         {/* Left Column: 4 Real-Time Metrics & Gauges */}
         <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3">
           
-          <div className="p-4 rounded-xl bg-surface border border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-cyan-400">
-                <Gauge className="w-4 h-4" /> CORE VELOCITY
+          <div className="p-4 rounded-xl bg-[#1c1c1b] border border-white/[0.08] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <Gauge className="w-4 h-4 text-stone-light" /> Core Velocity
               </span>
-              <span>CH-01</span>
+              <span className="text-[10px] text-stone">CH-01</span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <span className="font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <span className="font-mono text-2xl sm:text-3xl font-light text-white tracking-tight">
                 {telemetry.rpm.toLocaleString()}
               </span>
-              <span className="text-xs font-mono text-cyan-300">RPM</span>
+              <span className="text-xs font-mono text-stone-light">RPM</span>
             </div>
-            <div className="mt-2 w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div className="mt-2 w-full h-1 rounded-full bg-white/10 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-200"
+                className="h-full bg-stone-light transition-all duration-200"
                 style={{ width: `${(telemetry.rpm / 15000) * 100}%` }}
               />
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-surface border border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-amber-400">
-                <Flame className="w-4 h-4" /> THERMAL GRADIENT
+          <div className="p-4 rounded-xl bg-[#1c1c1b] border border-white/[0.08] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <Flame className="w-4 h-4 text-stone-light" /> Thermal Gradient
               </span>
-              <span>CH-02</span>
+              <span className="text-[10px] text-stone">CH-02</span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <span className="font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <span className="font-mono text-2xl sm:text-3xl font-light text-white tracking-tight">
                 {telemetry.temp}
               </span>
-              <span className="text-xs font-mono text-amber-300">°C</span>
+              <span className="text-xs font-mono text-stone-light">°C</span>
             </div>
-            <div className="mt-2 w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div className="mt-2 w-full h-1 rounded-full bg-white/10 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-amber-500 to-red-500 transition-all duration-200"
+                className="h-full bg-amber-400/80 transition-all duration-200"
                 style={{ width: `${(telemetry.temp / 350) * 100}%` }}
               />
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-surface border border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-blue-400">
-                <Zap className="w-4 h-4" /> LINE PRESSURE
+          <div className="p-4 rounded-xl bg-[#1c1c1b] border border-white/[0.08] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <Zap className="w-4 h-4 text-stone-light" /> Line Pressure
               </span>
-              <span>CH-03</span>
+              <span className="text-[10px] text-stone">CH-03</span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <span className="font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <span className="font-mono text-2xl sm:text-3xl font-light text-white tracking-tight">
                 {telemetry.pressure}
               </span>
-              <span className="text-xs font-mono text-blue-300">BAR</span>
+              <span className="text-xs font-mono text-stone-light">BAR</span>
             </div>
-            <div className="mt-2 w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div className="mt-2 w-full h-1 rounded-full bg-white/10 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-200"
+                className="h-full bg-stone-light transition-all duration-200"
                 style={{ width: `${(telemetry.pressure / 50) * 100}%` }}
               />
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-surface border border-white/5 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-purple-400">
-                <Activity className="w-4 h-4" /> STRAIN G-FORCE
+          <div className="p-4 rounded-xl bg-[#1c1c1b] border border-white/[0.08] flex flex-col justify-between">
+            <div className="flex items-center justify-between text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <Activity className="w-4 h-4 text-stone-light" /> Strain G-Force
               </span>
-              <span>CH-04</span>
+              <span className="text-[10px] text-stone">CH-04</span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <span className="font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <span className="font-mono text-2xl sm:text-3xl font-light text-white tracking-tight">
                 {telemetry.vibration}
               </span>
-              <span className="text-xs font-mono text-purple-300">G-RMS</span>
+              <span className="text-xs font-mono text-stone-light">G-RMS</span>
             </div>
-            <div className="mt-2 w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+            <div className="mt-2 w-full h-1 rounded-full bg-white/10 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-200"
+                className="h-full bg-accent-olive transition-all duration-200"
                 style={{ width: `${(telemetry.vibration / 3.0) * 100}%` }}
               />
             </div>
@@ -335,13 +334,13 @@ export const TelemetryInfographic: React.FC = () => {
         <div className="lg:col-span-8 flex flex-col gap-4">
           
           {/* Main Oscilloscope Waveform Display */}
-          <div className="relative rounded-xl overflow-hidden bg-black border border-white/10 p-3">
-            <div className="flex items-center justify-between mb-2 px-2 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-cyan-400">
-                <Radio className="w-3.5 h-3.5 animate-pulse" />
-                OSCILLOSCOPE WAVEFORM [{activeChannel.toUpperCase()}]
+          <div className="relative rounded-xl overflow-hidden bg-[#10100f] border border-white/[0.08] p-3">
+            <div className="flex items-center justify-between mb-2 px-2 text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <Radio className="w-3.5 h-3.5 text-accent-olive" />
+                Waveform Oscilloscope [{activeChannel.toUpperCase()}]
               </span>
-              <span>SCALE: 50mV/DIV</span>
+              <span className="text-stone text-[11px]">50mV / DIV</span>
             </div>
             <canvas
               ref={canvasRef}
@@ -352,13 +351,13 @@ export const TelemetryInfographic: React.FC = () => {
           </div>
 
           {/* FFT Spectrum Display */}
-          <div className="relative rounded-xl overflow-hidden bg-black border border-white/10 p-3">
-            <div className="flex items-center justify-between mb-2 px-2 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-blue-400">
-                <BarChart3 className="w-3.5 h-3.5" />
-                FFT HARMONIC SPECTRUM DENSITY (0 - 24 kHz)
+          <div className="relative rounded-xl overflow-hidden bg-[#10100f] border border-white/[0.08] p-3">
+            <div className="flex items-center justify-between mb-2 px-2 text-xs font-mono text-stone-light">
+              <span className="flex items-center gap-1.5 text-stone-light">
+                <BarChart3 className="w-3.5 h-3.5 text-stone-light" />
+                FFT Harmonic Spectral Density (0 - 24 kHz)
               </span>
-              <span>PEAK: 12.4 kHz</span>
+              <span className="text-stone text-[11px]">Peak: 12.4 kHz</span>
             </div>
             <canvas
               ref={fftCanvasRef}
@@ -373,16 +372,16 @@ export const TelemetryInfographic: React.FC = () => {
       </div>
 
       {/* Control Bar & Scientific Disclaimer */}
-      <div className="p-4 sm:p-5 border-t border-white/10 bg-surface/90 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#141413] flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Playback & Channel Selection */}
         <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={() => setIsRunning(!isRunning)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10 cursor-pointer"
           >
-            {isRunning ? <Pause className="w-3.5 h-3.5 text-cyan-400" /> : <Play className="w-3.5 h-3.5 text-cyan-400" />}
-            {isRunning ? 'Halt Telemetry' : 'Resume Feed'}
+            {isRunning ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+            {isRunning ? 'Pause Feed' : 'Resume Feed'}
           </button>
 
           <div className="flex items-center gap-1 text-xs font-mono">
@@ -390,10 +389,10 @@ export const TelemetryInfographic: React.FC = () => {
               <button
                 key={ch}
                 onClick={() => setActiveChannel(ch)}
-                className={`px-3 py-1.5 rounded-lg uppercase tracking-wider transition-colors border ${
+                className={`px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors border cursor-pointer ${
                   activeChannel === ch
-                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                    ? 'bg-white text-charcoal border-white font-semibold'
+                    : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
                 }`}
               >
                 {ch}
@@ -403,7 +402,7 @@ export const TelemetryInfographic: React.FC = () => {
         </div>
 
         {/* Sliders: Frequency & Noise Injection */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-light">
           <div className="flex items-center gap-2">
             <span>FREQ:</span>
             <input
@@ -413,7 +412,7 @@ export const TelemetryInfographic: React.FC = () => {
               step="0.1"
               value={signalFrequency}
               onChange={(e) => setSignalFrequency(parseFloat(e.target.value))}
-              className="w-20 accent-cyan-400 cursor-pointer"
+              className="w-20 accent-white cursor-pointer"
             />
             <span className="text-white">{signalFrequency.toFixed(1)}k</span>
           </div>
@@ -427,7 +426,7 @@ export const TelemetryInfographic: React.FC = () => {
               step="0.05"
               value={noiseLevel}
               onChange={(e) => setNoiseLevel(parseFloat(e.target.value))}
-              className="w-20 accent-cyan-400 cursor-pointer"
+              className="w-20 accent-white cursor-pointer"
             />
             <span className="text-white">{Math.round(noiseLevel * 100)}%</span>
           </div>
@@ -436,9 +435,9 @@ export const TelemetryInfographic: React.FC = () => {
       </div>
 
       {/* Explicit Scientific Disclaimer */}
-      <div className="px-5 py-2.5 bg-black/60 border-t border-white/5 text-center">
-        <p className="font-mono text-[10px] text-slate-500 uppercase tracking-wider">
-          * Note: Engineering Telemetry Engine — Live data generated via real-time mathematical harmonics for interactive interface visualization.
+      <div className="px-5 py-3 bg-[#10100f] border-t border-white/[0.05] text-center">
+        <p className="font-mono text-[10px] text-stone uppercase tracking-wider">
+          * Engineering telemetry simulation — Real-time continuous mathematical waveforms rendered for interface interaction.
         </p>
       </div>
 

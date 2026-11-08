@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, Pause, Compass, Sliders, Wind, ShieldAlert, Sparkles, RefreshCw } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Play, Pause, Sliders, Wind } from 'lucide-react';
 
 export const PhysicsSimulation: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -276,34 +275,34 @@ export const PhysicsSimulation: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative rounded-2xl bg-surface-subtle border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+    <div className="relative rounded-2xl bg-[#181817] text-white border border-black/[0.1] shadow-editorial overflow-hidden flex flex-col">
       
       {/* Top Header */}
-      <div className="p-4 sm:p-5 border-b border-white/10 bg-surface/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+      <div className="p-5 sm:p-6 border-b border-white/[0.08] bg-[#141413] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-accent-olive" />
           <div>
-            <h4 className="font-display font-bold text-white text-base tracking-wide flex items-center gap-2">
-              Style 04 · Physics & Simulation Visualization
+            <h4 className="font-serif text-lg font-medium text-white tracking-wide">
+              Fluid Dynamics & Aerodynamic Flow
             </h4>
-            <span className="font-mono text-xs text-cyan-400/90 tracking-wider">
-              NAVIER-STOKES COMPLIANT FLOW // VORTEX SHEDDING & DEFLECTION
+            <span className="font-mono text-xs text-stone-light tracking-wider">
+              Continuous Reynolds particle streamline simulation & vortex deflection
             </span>
           </div>
         </div>
 
         <div className="flex items-center gap-2 font-mono text-[11px]">
-          <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">
-            650+ REYNOLDS PARTICLES
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-light">
+            650+ Reynolds Particles
           </span>
-          <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 uppercase">
-            COLOR: {colorMap}
+          <span className="px-3 py-1 rounded-full bg-accent-olive/20 border border-accent-olive/40 text-stone-light uppercase">
+            Palette: {colorMap}
           </span>
         </div>
       </div>
 
       {/* Main Canvas Area */}
-      <div className="relative w-full h-[380px] sm:h-[440px] bg-[#050608] cursor-crosshair">
+      <div className="relative w-full h-[380px] sm:h-[440px] bg-[#111215] cursor-crosshair">
         <canvas
           ref={canvasRef}
           width={860}
@@ -312,46 +311,46 @@ export const PhysicsSimulation: React.FC = () => {
         />
 
         {/* Hover Deflector Instructions Pill */}
-        <div className="absolute top-4 left-4 pointer-events-none p-2 rounded-lg bg-black/60 border border-white/10 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-2">
-          <Wind className="w-3.5 h-3.5 text-rose-400" />
-          <span>Move Cursor across stream to generate aerodynamic vortex & deflection</span>
+        <div className="absolute top-4 left-4 pointer-events-none px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[11px] font-mono text-stone-light flex items-center gap-2">
+          <Wind className="w-3.5 h-3.5 text-accent-olive" />
+          <span>Move cursor across stream to generate aerodynamic vortex deflection</span>
         </div>
 
         {/* Dynamic Color Scale Bar */}
-        <div className="absolute bottom-4 right-4 p-2.5 rounded-xl bg-surface/90 border border-white/10 backdrop-blur-md flex items-center gap-2 text-[10px] font-mono text-slate-400">
+        <div className="absolute bottom-4 right-4 p-2.5 rounded-xl bg-[#141413]/90 border border-white/10 backdrop-blur-md flex items-center gap-2 text-[10px] font-mono text-stone-light">
           <span>0 m/s</span>
-          <div className={`w-28 h-2 rounded-full ${
+          <div className={`w-28 h-1.5 rounded-full ${
             colorMap === 'plasma'
               ? 'bg-gradient-to-r from-purple-800 via-rose-500 to-yellow-400'
               : colorMap === 'viridis'
               ? 'bg-gradient-to-r from-indigo-900 via-emerald-600 to-yellow-300'
               : colorMap === 'thermal'
               ? 'bg-gradient-to-r from-neutral-900 via-red-600 to-white'
-              : 'bg-gradient-to-r from-cyan-900 via-cyan-500 to-cyan-200'
+              : 'bg-gradient-to-r from-stone-800 via-stone-400 to-white'
           }`} />
           <span className="text-white">12 m/s</span>
         </div>
       </div>
 
       {/* Control Bar */}
-      <div className="p-4 sm:p-5 border-t border-white/10 bg-surface/90 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#141413] flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Play/Pause & Color Maps */}
         <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={() => setIsRunning(!isRunning)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10 cursor-pointer"
           >
-            {isRunning ? <Pause className="w-3.5 h-3.5 text-cyan-400" /> : <Play className="w-3.5 h-3.5 text-cyan-400" />}
+            {isRunning ? <Pause className="w-3.5 h-3.5 text-stone-light" /> : <Play className="w-3.5 h-3.5 text-stone-light" />}
             {isRunning ? 'Pause Sim' : 'Resume Sim'}
           </button>
 
           <button
             onClick={() => setShowVectors(!showVectors)}
-            className={`px-3 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider transition-colors border ${
+            className={`px-3.5 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-colors border cursor-pointer ${
               showVectors
-                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                ? 'bg-white text-charcoal border-white font-semibold'
+                : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
             }`}
           >
             Vector Grid
@@ -362,10 +361,10 @@ export const PhysicsSimulation: React.FC = () => {
               <button
                 key={map}
                 onClick={() => setColorMap(map)}
-                className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase tracking-wider transition-colors border ${
+                className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-colors border cursor-pointer ${
                   colorMap === map
-                    ? 'bg-white/20 text-white border-white/40'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                    ? 'bg-white text-charcoal border-white font-semibold'
+                    : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
                 }`}
               >
                 {map}
@@ -375,7 +374,7 @@ export const PhysicsSimulation: React.FC = () => {
         </div>
 
         {/* Sliders: Velocity & Vortex Wake */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-light">
           <div className="flex items-center gap-2">
             <span>VELOCITY:</span>
             <input
@@ -385,7 +384,7 @@ export const PhysicsSimulation: React.FC = () => {
               step="0.1"
               value={flowSpeed}
               onChange={(e) => setFlowSpeed(parseFloat(e.target.value))}
-              className="w-20 accent-cyan-400 cursor-pointer"
+              className="w-20 accent-white cursor-pointer"
             />
             <span className="text-white">{flowSpeed.toFixed(1)}x</span>
           </div>
@@ -399,7 +398,7 @@ export const PhysicsSimulation: React.FC = () => {
               step="0.1"
               value={vortexStrength}
               onChange={(e) => setVortexStrength(parseFloat(e.target.value))}
-              className="w-20 accent-cyan-400 cursor-pointer"
+              className="w-20 accent-white cursor-pointer"
             />
             <span className="text-white">{vortexStrength.toFixed(1)}</span>
           </div>
@@ -408,9 +407,9 @@ export const PhysicsSimulation: React.FC = () => {
       </div>
 
       {/* Mandatory Conceptual Disclaimer */}
-      <div className="px-5 py-2.5 bg-black/60 border-t border-white/5 text-center">
-        <p className="font-mono text-[10px] text-slate-500 uppercase tracking-wider">
-          * Note: Conceptual Scientific Visualization — Simulated particle velocity and vortex patterns are mathematical representations engineered for real-time visual demonstration.
+      <div className="px-5 py-3 bg-[#10100f] border-t border-white/[0.05] text-center">
+        <p className="font-mono text-[10px] text-stone uppercase tracking-wider">
+          * Conceptual scientific visualization — Simulated particle velocity and vortex patterns are mathematical representations engineered for real-time visual demonstration.
         </p>
       </div>
 

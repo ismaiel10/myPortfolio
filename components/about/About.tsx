@@ -2,163 +2,176 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Badge } from '@/components/ui/Badge';
-import { GraduationCap, MapPin, Compass, Sparkles, Terminal, Rocket, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, MapPin, Compass, ShieldCheck } from 'lucide-react';
 
 export const About: React.FC = () => {
   const pillars = [
     {
-      title: 'Systems & Software Engineering',
-      desc: 'Architecting clean, type-safe full-stack platforms with resilient database constraints and modular state machines.',
+      no: '01',
+      title: 'Architectural Rigor',
+      desc: 'Systems should be designed with deterministic schemas, row-level security constraints, and clear data pipelines rather than ad-hoc scripts.',
     },
     {
-      title: 'Artificial Intelligence & ML',
-      desc: 'Pursuing theoretical and applied AI/ML at VVCE Mysuru, bridging data science with real-world product utility.',
+      no: '02',
+      title: 'Founder Ownership',
+      desc: 'Building FixBazaar taught me that code is only valuable when it solves acute operational friction for real customers and service professionals.',
     },
     {
-      title: 'Product Architecture & UX',
-      desc: 'Designing frictionless user flows, intentional typography, and systematic design tokens that respect user cognition.',
+      no: '03',
+      title: 'Applied Intelligence',
+      desc: 'Pursuing AIML at VVCE Mysuru, focusing on practical computer vision and localized document retrieval rather than hype.',
     },
     {
-      title: 'Entrepreneurial Execution',
-      desc: 'Founding FixBazaar from the ground up: identifying market inefficiencies, scoping roadmaps, and executing with speed.',
+      no: '04',
+      title: 'Creative Technology',
+      desc: 'Using 3D physics engines, Unity, and procedural WebGL to communicate complex technical mechanics clearly.',
     },
   ];
 
   return (
-    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0b0e] border-t border-white/5 overflow-hidden">
-      {/* Background Lighting */}
-      <div className="absolute top-1/3 -right-60 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-1/4 w-80 h-80 bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="about" className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 bg-background border-b border-black/[0.06]">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="flex items-center justify-between pb-6 mb-16 sm:mb-20 border-b border-black/[0.08] text-xs font-mono tracking-widest text-stone uppercase">
+          <div className="flex items-center gap-3">
+            <span className="text-charcoal font-semibold">(01)</span>
+            <span>/</span>
+            <span>BIOGRAPHY & APPROACH</span>
+          </div>
+          <span className="hidden sm:inline">ENGINEERING RIGOR · PRODUCT VISION</span>
+        </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeading
-          number="01"
-          badge="IDENTITY & MINDSET"
-          title="Bridging Engineering Rigor with Product Vision"
-          subtitle="An ambitious approach to technology: understanding problems deeply, architecting systems methodically, and building products that endure."
-          badgeVariant="cyan"
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        {/* Two-Column Editorial Spread */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Portrait Treatment (Slide 2 Reel Inspired) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="relative rounded-2xl overflow-hidden bg-surface-subtle border border-white/10 shadow-card-rim group">
-              <div className="relative w-full aspect-[4/5] bg-neutral-900">
-                <Image
-                  src="/images/black.png"
-                  alt="Syed Ismaiel portrait — Vidyavardhaka College of Engineering"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 420px"
-                  className="object-cover object-[50%_12%] grayscale contrast-110 group-hover:scale-[1.01] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12] via-transparent to-transparent opacity-90" />
-              </div>
+          {/* Left Column: Editorial Statement & Biography */}
+          <div className="lg:col-span-7 space-y-12">
+            
+            {/* Monumental Editorial Manifesto Statement */}
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-charcoal font-normal leading-[1.15] tracking-tight">
+              “Engineering is not merely writing code. It is understanding constraints, designing systems that endure, and turning abstract ideas into tangible reality.”
+            </h2>
 
-              {/* Verified Details Card */}
-              <div className="p-6 relative bg-surface border-t border-white/10 flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <span className="font-display font-bold text-white text-lg">
-                    Syed Ismaiel
-                  </span>
-                  <Badge variant="blue" size="sm">
-                    Mysuru, Karnataka
-                  </Badge>
-                </div>
-
-                <div className="space-y-2 text-xs font-mono text-slate-300">
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>BTech in Artificial Intelligence & Machine Learning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>Vidyavardhaka College of Engineering (VVCE)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mindset Statement Card */}
-            <div className="p-6 rounded-2xl bg-surface-muted/60 border border-white/5 backdrop-blur-md">
-              <span className="font-mono text-[11px] text-cyan-400 uppercase tracking-widest block mb-2">
-                // CORE CONVICTION
-              </span>
-              <p className="text-sm text-slate-300 italic font-light leading-relaxed">
-                &ldquo;Ambition is not demonstrated through exaggerated claims, but through the craftsmanship of the work, the precision of the systems, and the audacity of what is being built.&rdquo;
+            {/* Narrative Paragraphs */}
+            <div className="space-y-6 text-base sm:text-lg text-stone font-light leading-relaxed">
+              <p>
+                I am an engineer and product builder driven by curiosity across technology, business, and design. I do not see software engineering as an isolated technical exercise; I see it as the primary medium to build meaningful companies and solve real-world problems.
+              </p>
+              <p>
+                Currently pursuing my BTech in Artificial Intelligence & Machine Learning at Vidyavardhaka College of Engineering (VVCE) in Mysuru, I combine formal academic foundations with rapid founder execution. As Founder & CEO of FixBazaar, I architect every layer from the customer mobile experience to geospatial technician dispatch algorithms.
               </p>
             </div>
+
+            {/* Academic Credentials Box */}
+            <div className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.06] space-y-4">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone">
+                <GraduationCap className="w-4 h-4 text-accent-olive" />
+                <span>Academic Foundation</span>
+              </div>
+              <div>
+                <h3 className="font-serif text-xl sm:text-2xl font-medium text-charcoal">
+                  BTech in Artificial Intelligence & Machine Learning
+                </h3>
+                <p className="text-sm text-stone mt-1">
+                  Vidyavardhaka College of Engineering (VVCE), Mysuru, Karnataka
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-stone border-t border-black/[0.06]">
+                <span className="text-accent-olive font-medium">2023 — Present</span>
+                <span>•</span>
+                <span>Coordinates: 12.3118° N, 76.6529° E</span>
+              </div>
+            </div>
+
+            {/* The 4 Architectural Pillars Grid */}
+            <div className="pt-4">
+              <span className="font-mono text-xs uppercase tracking-widest text-stone block mb-6">
+                Principles of Execution
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {pillars.map((p) => (
+                  <div key={p.no} className="space-y-2 pb-6 border-b border-black/[0.06]">
+                    <div className="font-mono text-xs text-accent-olive font-semibold">
+                      {p.no}
+                    </div>
+                    <h4 className="font-serif text-lg font-medium text-charcoal">
+                      {p.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-stone font-light leading-relaxed">
+                      {p.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
 
-          {/* Right Column: Narrative, Philosophy & Pillars */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
-            <div className="prose prose-invert max-w-none">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight mb-4">
-                Hello, I am Syed Ismaiel.
-              </h3>
+          {/* Right Column: Editorial Portrait & Provenance */}
+          <div className="lg:col-span-5 flex flex-col space-y-8">
+            {/* Editorial Portrait Container */}
+            <div className="relative rounded-2xl overflow-hidden bg-surface border border-black/[0.08] shadow-editorial group p-6 sm:p-8 flex flex-col items-center">
+              <div
+                className="relative w-full max-w-[340px] aspect-[3/4] flex items-end drop-shadow-[0_15px_30px_rgba(20,20,19,0.1)]"
+                style={{ position: 'relative', width: '100%', maxWidth: '340px', aspectRatio: '3/4' }}
+              >
+                <Image
+                  src="/images/syed-cutout.png"
+                  alt="Syed Ismaiel — Portrait Cutout"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 340px"
+                  className="object-contain object-bottom select-none pointer-events-none transition-transform duration-700 group-hover:scale-[1.02]"
+                  style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                />
+              </div>
 
-              <div className="space-y-4 text-slate-300 text-base leading-relaxed font-light">
-                <p>
-                  I am a software developer, product builder, and aspiring technology founder currently pursuing my BTech in <strong className="text-white font-medium">Artificial Intelligence & Machine Learning</strong> at Vidyavardhaka College of Engineering in Mysuru, Karnataka.
-                </p>
-                <p>
-                  I do not view engineering through the narrow lens of merely writing code to fulfill a prompt. For me, true technical craft begins when an idea is scrutinized, its architectural fundamentals are stress-tested, its user experience is carefully designed, and it is forged into a working, reliable reality.
-                </p>
-                <p>
-                  I am fascinated by the intersection of six core domains: <span className="text-cyan-300 font-mono text-sm">Engineering</span>, <span className="text-cyan-300 font-mono text-sm">Technology</span>, <span className="text-cyan-300 font-mono text-sm">Business</span>, <span className="text-cyan-300 font-mono text-sm">Creativity</span>, <span className="text-cyan-300 font-mono text-sm">Product Development</span>, and <span className="text-cyan-300 font-mono text-sm">Entrepreneurship</span>.
+              {/* Editorial Caption Bar */}
+              <div className="w-full mt-6 p-4 rounded-xl bg-paper border border-black/[0.06] space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-charcoal font-semibold uppercase tracking-wider">
+                    Syed Ismaiel
+                  </span>
+                  <span className="text-accent-olive font-medium">Founder & Builder</span>
+                </div>
+                <p className="text-xs text-stone font-light leading-relaxed">
+                  Tailored black-and-white editorial portrait. Focused on grounded engineering, truth in metrics, and impactful software delivery.
                 </p>
               </div>
             </div>
 
-            {/* 4 Pillars Matrix */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              {pillars.map((item, idx) => (
-                <div
-                  key={item.title}
-                  className="p-5 rounded-xl bg-surface-subtle border border-white/5 hover:border-cyan-500/30 transition-all duration-300 shadow-card-rim"
+            {/* Quick Links Card */}
+            <div className="p-6 rounded-2xl bg-paper border border-black/[0.06] space-y-4">
+              <span className="font-mono text-xs uppercase tracking-widest text-stone">
+                Direct Profiles & Repositories
+              </span>
+              <div className="space-y-3">
+                <a
+                  href="https://github.com/ismaiel10"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 rounded-xl bg-surface hover:bg-[#EAE7E0] transition-colors text-xs font-mono text-charcoal group"
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-mono text-xs text-cyan-400 font-bold">
-                      0{idx + 1}.
-                    </span>
-                    <h4 className="font-display font-semibold text-white text-sm">
-                      {item.title}
-                    </h4>
-                  </div>
-                  <p className="text-xs text-slate-400 font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  <span>github.com/ismaiel10</span>
+                  <ArrowUpRight className="w-4 h-4 text-stone group-hover:text-charcoal transition-colors" />
+                </a>
 
-            {/* Key Technical Commitments */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-surface-subtle via-surface-muted to-surface-subtle border border-white/10 flex flex-col gap-3">
-              <div className="flex items-center gap-2 font-mono text-xs text-slate-400 uppercase tracking-wider">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Verified Standards</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono text-slate-300">
-                <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-cyan-400 block font-bold mb-1">ACCURATE TRUTH</span>
-                  <span>Every project, repo, and role accurately stated without exaggeration.</span>
-                </div>
-                <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-blue-400 block font-bold mb-1">FOUNDER VISION</span>
-                  <span>Leading FixBazaar as an early-stage hyperlocal initiative.</span>
-                </div>
-                <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-purple-400 block font-bold mb-1">RIGOROUS CRAFT</span>
-                  <span>Combining AI theory with high-performance interactive interfaces.</span>
-                </div>
+                <a
+                  href="https://www.linkedin.com/in/syed-ismaiel-616645330"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 rounded-xl bg-surface hover:bg-[#EAE7E0] transition-colors text-xs font-mono text-charcoal group"
+                >
+                  <span>linkedin.com/in/syed-ismaiel</span>
+                  <ArrowUpRight className="w-4 h-4 text-stone group-hover:text-charcoal transition-colors" />
+                </a>
               </div>
             </div>
 
           </div>
 
         </div>
+
       </div>
     </section>
   );

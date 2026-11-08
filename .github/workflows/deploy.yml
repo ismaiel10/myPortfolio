@@ -25,6 +25,8 @@ jobs:
 
       - name: Build Next.js Static Export
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /myPortfolio
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4

@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TechnicalCutaway } from './TechnicalCutaway';
 import { TelemetryInfographic } from './TelemetryInfographic';
 import { AssemblySequence } from './AssemblySequence';
 import { PhysicsSimulation } from './PhysicsSimulation';
-import { Cpu, Activity, Layers, Wind, Sparkles } from 'lucide-react';
+import { Sparkles, Eye, Wind, Layers, Activity, Cpu } from 'lucide-react';
 
 export const EngineeringLab: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'cutaway' | 'telemetry' | 'assembly' | 'physics'>('cutaway');
@@ -14,51 +13,63 @@ export const EngineeringLab: React.FC = () => {
   const tabs = [
     {
       id: 'cutaway' as const,
-      number: '01',
-      title: '3D Technical Cutaway',
-      subtitle: 'Axial turbine with internal flow & exploded inspection',
+      no: '01',
+      title: '3D Mechanical Cutaway',
+      subtitle: 'Axial turbine flow & internal exploded view in Three.js WebGL',
       icon: Cpu,
     },
     {
       id: 'telemetry' as const,
-      number: '02',
-      title: 'Telemetry & Infographics',
-      subtitle: 'Dynamic oscilloscope, FFT spectrum & sensor gauges',
+      no: '02',
+      title: 'Data & Telemetry Visualization',
+      subtitle: 'Real-time harmonic synthesizer & FFT frequency spectrum analyzer',
       icon: Activity,
     },
     {
       id: 'assembly' as const,
-      number: '03',
-      title: 'Product CAD Assembly',
-      subtitle: '5-stage sequential exploded-view kinematics',
+      no: '03',
+      title: 'CAD Kinematic Assembly',
+      subtitle: '5-stage sequential exploded-view mechanical decomposition',
       icon: Layers,
     },
     {
       id: 'physics' as const,
-      number: '04',
-      title: 'Physics & Fluid Simulation',
-      subtitle: 'Navier-Stokes flow field & interactive vortex shedding',
+      no: '04',
+      title: 'Navier-Stokes Fluid Dynamics',
+      subtitle: 'Interactive velocity vector field and vortex shedding simulation',
       icon: Wind,
     },
   ];
 
   return (
-    <section id="lab" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0b0f] border-t border-white/5 overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-purple-600/10 blur-[150px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-cyan-600/10 blur-[150px] pointer-events-none rounded-full" />
+    <section id="experiments" className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 bg-background border-b border-black/[0.06]">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-black/[0.08] gap-6 text-stone text-xs font-mono tracking-widest uppercase">
+          <div className="flex items-center gap-3">
+            <span className="text-charcoal font-semibold">(03)</span>
+            <span>/</span>
+            <span>THE PLAYGROUND — SELECTED EXPERIMENTS</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-olive" />
+            <span>Interactive Scientific Computing</span>
+          </div>
+        </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeading
-          number="03"
-          badge="SIGNATURE RESEARCH SUITE"
-          title="Engineering Visual Lab"
-          subtitle="A dedicated creative technology sandbox demonstrating my interest in engineering, scientific visualization, technical computing, and visual storytelling across 4 interactive real-time demonstrations."
-          badgeVariant="indigo"
-        />
+        {/* Narrative Intro */}
+        <div className="max-w-3xl space-y-4">
+          <h2 className="font-serif text-3xl sm:text-5xl font-normal text-charcoal tracking-tight">
+            Creative Technology & Simulations
+          </h2>
+          <p className="text-base sm:text-lg text-stone font-light leading-relaxed">
+            A curated gallery of engineering experiments exploring 3D graphics, procedural simulation, mathematical visualization, and real-time physics.
+          </p>
+        </div>
 
-        {/* 4-Tab Selector Navigation Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        {/* Exhibition Selector Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -66,26 +77,26 @@ export const EngineeringLab: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`p-4 sm:p-5 rounded-xl border text-left transition-all duration-300 flex flex-col justify-between ${
+                className={`p-6 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between min-h-[140px] cursor-pointer ${
                   isActive
-                    ? 'bg-surface-elevated border-cyan-500/50 shadow-glow-cyan -translate-y-0.5'
-                    : 'bg-surface-subtle border-white/5 hover:border-white/20 hover:bg-surface-muted'
+                    ? 'bg-paper border-charcoal shadow-lift'
+                    : 'bg-surface/50 border-black/[0.06] hover:bg-surface hover:border-black/[0.14]'
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`font-mono text-xs font-bold ${isActive ? 'text-cyan-400' : 'text-slate-500'}`}>
-                    STYLE {tab.number}
+                <div className="flex items-center justify-between w-full mb-3">
+                  <span className={`font-mono text-xs font-semibold ${isActive ? 'text-accent-olive' : 'text-stone'}`}>
+                    EXP. {tab.no}
                   </span>
-                  <div className={`p-1.5 rounded-md ${isActive ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/5 text-slate-400'}`}>
+                  <div className={`p-1.5 rounded-md ${isActive ? 'text-charcoal' : 'text-stone'}`}>
                     <Icon className="w-4 h-4" />
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="font-display font-bold text-sm sm:text-base text-white">
+                  <h4 className="font-serif text-base font-medium text-charcoal">
                     {tab.title}
                   </h4>
-                  <p className="mt-1 text-xs text-slate-400 font-light line-clamp-2">
+                  <p className="text-xs text-stone font-light mt-1 line-clamp-2">
                     {tab.subtitle}
                   </p>
                 </div>
@@ -94,8 +105,8 @@ export const EngineeringLab: React.FC = () => {
           })}
         </div>
 
-        {/* Active Demonstration Display */}
-        <div className="w-full">
+        {/* Main Exhibition Stage Plinth */}
+        <div className="rounded-3xl bg-paper border border-black/[0.08] shadow-editorial p-6 sm:p-10 lg:p-12 overflow-hidden">
           {activeTab === 'cutaway' && <TechnicalCutaway />}
           {activeTab === 'telemetry' && <TelemetryInfographic />}
           {activeTab === 'assembly' && <AssemblySequence />}

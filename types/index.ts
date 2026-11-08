@@ -5,7 +5,7 @@ export interface Project {
   tagline: string;
   role: string;
   status: string;
-  statusType: 'founder' | 'development' | 'concept';
+  statusType: 'founder' | 'development' | 'concept' | 'game';
   description: string;
   fullOverview: string;
   technologies: string[];

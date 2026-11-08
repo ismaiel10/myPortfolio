@@ -1,159 +1,205 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, Github, Linkedin, Cpu, Compass, Layers, ShieldCheck, Sparkles } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
-import { Hero3DLoop } from './Hero3DLoop';
+import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowDown, ArrowUpRight, Compass, Sparkles } from 'lucide-react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const Hero: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const backdropShapeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Entrance Animation
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.from(textRef.current?.children || [], {
+        opacity: 0.3,
+        y: 20,
+        duration: 0.8,
+        stagger: 0.08,
+      })
+        .from(
+          portraitRef.current,
+          {
+            opacity: 0.6,
+            y: 20,
+            scale: 0.98,
+            duration: 0.9,
+          },
+          '-=0.6'
+        );
+
+      // Scroll-linked Subtle Parallax
+      gsap.to(portraitRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+        yPercent: 14,
+        scale: 1.02,
+      });
+
+      gsap.to(backdropShapeRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+        yPercent: 8,
+      });
+
+      gsap.to(textRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+        yPercent: -15,
+        opacity: 0.2,
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#070709]">
-      {/* Background Decorative Grid and Ambient Glows */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-cyan-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+    <section
+      ref={containerRef}
+      className="relative min-h-[95vh] lg:min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 px-6 sm:px-8 lg:px-12 bg-background overflow-hidden border-b border-black/[0.06]"
+    >
+      {/* Top Editorial Index Bar */}
+      <div className="max-w-7xl mx-auto w-full flex items-center justify-between pb-6 border-b border-black/[0.08] text-stone text-[11px] font-mono tracking-widest uppercase">
+        <div className="flex items-center gap-3">
+          <span className="text-charcoal font-semibold">ISSUE 01</span>
+          <span>/</span>
+          <span>ENGINEERING & PRODUCT ARCHIVE</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-4">
+          <span>12.3118° N, 76.6529° E</span>
+          <span>•</span>
+          <span>MYSURU, KARNATAKA</span>
+        </div>
+      </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      {/* Main Asymmetrical Stage */}
+      <div className="max-w-7xl mx-auto w-full my-auto py-8 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Visual Portrait with Editorial Rim Light & Framing */}
-          <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col items-center lg:items-start">
-            <div className="relative w-full max-w-[380px] sm:max-w-[420px] group">
-              {/* Electric Rim Glow behind portrait */}
-              <div className="absolute -inset-1.5 bg-gradient-to-tr from-cyan-500/30 via-blue-600/20 to-purple-600/30 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Left Column: Monumental Editorial Typography */}
+          <div ref={textRef} className="lg:col-span-7 flex flex-col items-start z-10">
+            {/* Tagline Badge */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-olive" />
+              <span className="font-mono text-xs text-accent-olive uppercase tracking-[0.2em] font-medium">
+                Engineer / Product Builder / Founder
+              </span>
+            </div>
 
-              {/* Main Portrait Card Container */}
-              <div className="relative rounded-2xl overflow-hidden bg-surface border border-white/15 shadow-2xl">
-                {/* Official Portrait */}
-                <div className="relative w-full aspect-[3/4] bg-neutral-900">
-                  <Image
-                    src="/images/black.png"
-                    alt="Syed Ismaiel — Engineer, Product Builder & Founder"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    className="object-cover object-[50%_15%] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  />
-                  {/* Subtle gradient vignette at the bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent opacity-80" />
-                </div>
+            {/* Monumental Name in Editorial Display Typography */}
+            <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-normal tracking-tight text-charcoal leading-[0.92] mb-8">
+              Syed <br />
+              <span className="italic font-light text-charcoal/90">Ismaiel</span>
+            </h1>
 
-                {/* Overlaid Editorial HUD Info at Card Foot */}
-                <div className="absolute bottom-0 inset-x-0 p-5 backdrop-blur-md bg-black/60 border-t border-white/10 flex flex-col gap-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-display font-bold text-white text-base tracking-wide">
-                      Syed Ismaiel
-                    </span>
-                    <Badge variant="cyan" size="sm" pulse>
-                      Verified Identity
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                    <span>BTech AI & ML · VVCE</span>
-                    <span className="text-cyan-400">Mysuru, KA</span>
-                  </div>
-                </div>
-              </div>
+            {/* Confident Manifesto Introduction */}
+            <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-charcoal-muted font-normal leading-snug max-w-xl mb-8">
+              “I build products, engineer systems and explore ideas at the intersection of technology and creativity.”
+            </p>
 
-              {/* Secondary floating HUD telemetry card */}
-              <div className="absolute -bottom-4 -right-4 sm:-right-6 p-3 rounded-xl bg-surface-muted/95 border border-cyan-500/30 shadow-glow-cyan backdrop-blur-lg hidden sm:flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-mono text-[10px] text-slate-400 uppercase">Architecture Status</span>
-                  <span className="font-display text-xs font-semibold text-white">Active Product Builder</span>
-                </div>
-              </div>
+            {/* Concise Bio & Context Note */}
+            <p className="text-sm sm:text-base text-stone font-light leading-relaxed max-w-lg mb-10">
+              Pursuing Artificial Intelligence & Machine Learning at Vidyavardhaka College of Engineering, Mysuru. Currently founding FixBazaar and architecting applied computer vision systems.
+            </p>
+
+            {/* Actions & Discovery Links */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+              <Link
+                href="#work"
+                className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-charcoal text-white hover:bg-black transition-colors text-xs font-mono uppercase tracking-widest group"
+              >
+                <span>Explore Selected Work</span>
+                <ArrowDown className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" />
+              </Link>
+
+              <Link
+                href="#about"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-charcoal hover:text-stone transition-colors py-3 group"
+              >
+                <span>Read Philosophy</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-stone group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
             </div>
           </div>
 
-          {/* Right Column: High-End Cinematic Typography, 3D Iridescence & CTAs */}
-          <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center text-left">
-            {/* Top Telemetry Row */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
-              <Badge variant="cyan" pulse size="sm">
-                PORTFOLIO EDITION · 2026
-              </Badge>
-              <span className="font-mono text-xs text-slate-400">
-                12.3118° N, 76.6529° E
+          {/* Right Column: Art-Directed Editorial Portrait */}
+          <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+            {/* Architectural Tone Plinth (Grounded background shape, warm stone) */}
+            <div
+              ref={backdropShapeRef}
+              className="absolute w-[280px] sm:w-[360px] lg:w-[420px] h-[380px] sm:h-[480px] lg:h-[560px] bg-[#EFECE6] rounded-t-[140px] rounded-b-3xl border border-black/[0.04] bottom-0 right-0 sm:right-6 lg:right-0 z-0 shadow-subtle"
+            />
+
+            {/* Portrait Cutout (High-resolution, natural, extending beyond shape) */}
+            <div
+              ref={portraitRef}
+              className="relative z-10 w-[300px] sm:w-[380px] lg:w-[440px] aspect-[3/4] flex items-end drop-shadow-[0_20px_35px_rgba(20,20,19,0.12)]"
+              style={{ position: 'relative', width: '100%', maxWidth: '440px', aspectRatio: '3/4' }}
+            >
+              <Image
+                src="/images/syed-cutout.png"
+                alt="Syed Ismaiel — Founder & Engineer"
+                fill
+                priority
+                sizes="(max-width: 640px) 300px, (max-width: 1024px) 380px, 440px"
+                className="object-contain object-bottom select-none pointer-events-none"
+                style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+              />
+            </div>
+
+            {/* Subtle Editorial Captioned Tag */}
+            <div className="absolute -bottom-4 left-4 sm:left-12 lg:left-4 z-20 px-4 py-2 rounded-xl bg-paper/95 border border-black/[0.08] backdrop-blur-md shadow-subtle flex flex-col">
+              <span className="font-mono text-[9px] text-stone uppercase tracking-widest">
+                Portrayed
               </span>
-              <span className="text-slate-600 hidden sm:inline">|</span>
-              <span className="font-mono text-xs text-slate-400 hidden sm:inline">
-                Mysuru, Karnataka, India
+              <span className="font-serif text-xs font-medium text-charcoal">
+                Syed Ismaiel, 2026
               </span>
-            </div>
-
-            {/* Oversized Brand Typography */}
-            <div className="relative">
-              <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white uppercase leading-[1.05]">
-                Syed Ismaiel<span className="text-cyan-400">°</span>
-              </h1>
-              <div className="mt-2 font-mono text-xs sm:text-sm tracking-[0.2em] text-cyan-400 uppercase font-medium">
-                Engineer / Product Builder / Founder
-              </div>
-            </div>
-
-            {/* Headline & Philosophy */}
-            <p className="mt-6 text-xl sm:text-2xl font-light text-slate-200 leading-snug">
-              &ldquo;Building ideas into things that matter.&rdquo;
-            </p>
-
-            <p className="mt-4 text-sm sm:text-base text-slate-400 font-light leading-relaxed max-w-2xl">
-              I explore technology, engineer digital experiences, and turn ambitious ideas into products.
-              Rooted in Artificial Intelligence & Machine Learning, I design and build systems at the intersection of engineering rigor, product architecture, and entrepreneurial vision.
-            </p>
-
-            {/* Interactive CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-              <Button href="#work" variant="primary" size="md" icon>
-                Explore Selected Work
-              </Button>
-              <Button href="#lab" variant="secondary" size="md">
-                <Cpu className="w-4 h-4 text-cyan-400 mr-2" />
-                Engineering Visual Lab
-              </Button>
-              <Button href="#contact" variant="outline" size="md">
-                Connect
-              </Button>
-            </div>
-
-            {/* Social Proof & Verified Profiles */}
-            <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <span className="font-mono text-xs text-slate-400 uppercase tracking-wider">
-                  Verified Channels:
-                </span>
-                <a
-                  href="https://github.com/ismaiel10"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  <span>ismaiel10</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/syed-ismaiel-616645330"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  <span>syed-ismaiel</span>
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Available for venture co-founding & product engineering</span>
-              </div>
             </div>
           </div>
 
         </div>
+      </div>
+
+      {/* Bottom Editorial Footnote */}
+      <div className="max-w-7xl mx-auto w-full pt-6 border-t border-black/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-stone">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent-olive" />
+          <span>Independent Software Architecture & Product Ventures</span>
+        </div>
+
+        <Link
+          href="#work"
+          className="flex items-center gap-2 text-charcoal hover:text-stone transition-colors group"
+        >
+          <span className="tracking-widest uppercase text-[11px]">Scroll down to enter archive</span>
+          <ArrowDown className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" />
+        </Link>
       </div>
     </section>
   );

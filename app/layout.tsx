@@ -5,28 +5,24 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ismaiel10.github.io/myPortfolio/'),
   title: 'Syed Ismaiel — Engineer, Product Builder & Founder',
   description:
-    'Explore the engineering projects, software products, and creative technology experiments of Syed Ismaiel. BTech in Artificial Intelligence & Machine Learning.',
+    'Personal portfolio of Syed Ismaiel: engineer, product builder, and founder working across software architecture, artificial intelligence, and creative technology.',
   authors: [{ name: 'Syed Ismaiel', url: 'https://github.com/ismaiel10' }],
   creator: 'Syed Ismaiel',
   keywords: [
     'Syed Ismaiel',
-    'Software Engineer',
+    'Engineer',
     'Product Builder',
     'Founder',
     'FixBazaar',
+    'Forgent',
     'AI & Machine Learning',
-    'Vidyavardhaka College of Engineering',
-    'Mysuru',
-    'Creative Technologist',
-    '3D Visualization',
-    'Next.js',
-    'React Native',
-    'Unity',
+    'VVCE Mysuru',
+    'Creative Technology',
   ],
   openGraph: {
     title: 'Syed Ismaiel — Engineer, Product Builder & Founder',
     description:
-      'Explore the engineering projects, software products, and creative technology experiments of Syed Ismaiel.',
+      'Personal portfolio of Syed Ismaiel: engineer, product builder, and founder working across software architecture, artificial intelligence, and creative technology.',
     url: 'https://ismaiel10.github.io/myPortfolio/',
     siteName: 'Syed Ismaiel Portfolio',
     images: [
@@ -34,7 +30,7 @@ export const metadata: Metadata = {
         url: '/images/black.png',
         width: 768,
         height: 1024,
-        alt: 'Syed Ismaiel — Official Portrait',
+        alt: 'Syed Ismaiel — Portrait',
       },
     ],
     locale: 'en_US',
@@ -44,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Syed Ismaiel — Engineer, Product Builder & Founder',
     description:
-      'Explore the engineering projects, software products, and creative technology experiments of Syed Ismaiel.',
+      'Personal portfolio of Syed Ismaiel: engineer, product builder, and founder working across software architecture, artificial intelligence, and creative technology.',
     images: ['/images/black.png'],
   },
   robots: {
@@ -54,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#070709',
+  themeColor: '#F8F7F4',
   width: 'device-width',
   initialScale: 1,
 };
@@ -65,17 +61,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="bg-[#070709] text-slate-100 antialiased font-sans selection:bg-cyan-500/30 selection:text-white">
+      <body className="bg-background text-charcoal min-h-screen antialiased selection:bg-[#EAE5D9]">
         {children}
       </body>
     </html>

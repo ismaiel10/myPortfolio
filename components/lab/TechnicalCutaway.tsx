@@ -392,68 +392,67 @@ export const TechnicalCutaway: React.FC = () => {
   ];
 
   return (
-    <div className="relative rounded-2xl bg-surface-subtle border border-white/10 overflow-hidden shadow-2xl flex flex-col">
-      
-      {/* Top HUD Telemetry Header */}
-      <div className="p-4 sm:p-5 border-b border-white/10 bg-surface/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+    <div className="relative rounded-2xl overflow-hidden bg-[#181817] text-white border border-black/[0.1] shadow-editorial flex flex-col">
+      {/* Header Bar */}
+      <div className="p-5 sm:p-6 border-b border-white/[0.08] bg-[#141413] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-accent-olive" />
           <div>
-            <h4 className="font-display font-bold text-white text-base tracking-wide flex items-center gap-2">
-              Style 01 · 3D Technical Explainer & Cutaway
+            <h4 className="font-serif text-lg font-medium text-white tracking-wide">
+              3D Axial Turbine Explainer
             </h4>
-            <span className="font-mono text-xs text-cyan-400/90 tracking-wider">
-              AXIAL TURBINE DRIVE UNIT // PROCEDURAL WEBGL CAD
+            <span className="font-mono text-xs text-stone-light tracking-wider">
+              Procedural WebGL Mechanical Model & Kinematic Flow
             </span>
           </div>
         </div>
 
-        {/* Live Status Badges */}
+        {/* Live Status Indicators */}
         <div className="flex items-center gap-2 font-mono text-[11px]">
-          <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">
-            {isCutaway ? 'VIEW: CUTAWAY' : 'VIEW: FULL CASING'}
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-light">
+            {isCutaway ? 'View: Cutaway' : 'View: Full Casing'}
           </span>
-          <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">
-            {isExploded ? 'STATE: EXPLODED' : 'STATE: ASSEMBLED'}
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-light">
+            {isExploded ? 'State: Exploded' : 'State: Assembled'}
           </span>
-          <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
-            {isPlaying ? `${Math.round(rotationSpeed * 9200)} RPM` : 'STANDBY'}
+          <span className="px-3 py-1 rounded-full bg-accent-olive/20 border border-accent-olive/40 text-stone-light">
+            {isPlaying ? `${Math.round(rotationSpeed * 9200)} RPM` : 'Standby'}
           </span>
         </div>
       </div>
 
       {/* 3D Canvas Area */}
-      <div className="relative w-full h-[400px] sm:h-[480px] bg-[#050608] cursor-grab active:cursor-grabbing">
+      <div className="relative w-full h-[400px] sm:h-[480px] bg-[#141413] cursor-grab active:cursor-grabbing">
         <div ref={mountRef} className="w-full h-full" />
 
         {/* Floating Instructions Pill */}
-        <div className="absolute top-4 left-4 pointer-events-none p-2 rounded-lg bg-black/60 border border-white/10 backdrop-blur-md text-[11px] font-mono text-slate-400 flex items-center gap-2">
-          <RotateCw className="w-3.5 h-3.5 text-cyan-400" />
-          <span>Click & Drag to Rotate 3D CAD Model</span>
+        <div className="absolute top-4 left-4 pointer-events-none px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[11px] font-mono text-stone-light flex items-center gap-2">
+          <RotateCw className="w-3.5 h-3.5 text-stone-light" />
+          <span>Click & Drag to Rotate 3D Model</span>
         </div>
 
         {/* Active Callout Overlay Card */}
         {activeCallout && (
-          <div className="absolute bottom-4 left-4 max-w-sm p-4 rounded-xl bg-surface/90 border border-cyan-500/30 backdrop-blur-md shadow-glow-cyan">
+          <div className="absolute bottom-4 left-4 max-w-sm p-4 rounded-xl bg-charcoal/90 border border-white/15 backdrop-blur-md shadow-2xl">
             {callouts
               .filter((c) => c.id === activeCallout)
               .map((c) => (
                 <div key={c.id} className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase text-cyan-400 tracking-wider">
-                      COMPONENT ANNOTATION
+                    <span className="font-mono text-[10px] uppercase text-accent-olive tracking-widest">
+                      Component Detail
                     </span>
                     <button
                       onClick={() => setActiveCallout(null)}
-                      className="text-slate-400 hover:text-white text-xs font-mono"
+                      className="text-stone hover:text-white text-xs font-mono"
                     >
                       ✕
                     </button>
                   </div>
-                  <h5 className="font-display font-bold text-white text-sm">
+                  <h5 className="font-serif text-sm font-medium text-white">
                     {c.title}
                   </h5>
-                  <p className="text-xs text-slate-300 font-light leading-relaxed">
+                  <p className="text-xs text-stone-light font-light leading-relaxed">
                     {c.desc}
                   </p>
                 </div>
@@ -463,24 +462,23 @@ export const TechnicalCutaway: React.FC = () => {
       </div>
 
       {/* Control Bar & Component Selectors */}
-      <div className="p-4 sm:p-5 border-t border-white/10 bg-surface/90 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
-        
+      <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#141413] flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Playback & View Toggles */}
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10 cursor-pointer"
           >
-            {isPlaying ? <Pause className="w-3.5 h-3.5 text-cyan-400" /> : <Play className="w-3.5 h-3.5 text-cyan-400" />}
+            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             {isPlaying ? 'Pause' : 'Rotate'}
           </button>
 
           <button
             onClick={handleToggleCutaway}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider transition-colors border ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-colors border cursor-pointer ${
               isCutaway
-                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
-                : 'bg-white/5 text-slate-300 border-white/10'
+                ? 'bg-white/20 text-white border-white/30'
+                : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -489,10 +487,10 @@ export const TechnicalCutaway: React.FC = () => {
 
           <button
             onClick={() => setIsExploded(!isExploded)}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider transition-colors border ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-colors border cursor-pointer ${
               isExploded
-                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
-                : 'bg-white/5 text-slate-300 border-white/10'
+                ? 'bg-white/20 text-white border-white/30'
+                : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -501,8 +499,8 @@ export const TechnicalCutaway: React.FC = () => {
         </div>
 
         {/* Speed Slider & Callout Selector Pills */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2 text-xs font-mono text-stone-light">
             <span>SPEED:</span>
             <input
               type="range"
@@ -511,20 +509,20 @@ export const TechnicalCutaway: React.FC = () => {
               step="0.1"
               value={rotationSpeed}
               onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
-              className="w-24 accent-cyan-400 cursor-pointer"
+              className="w-24 accent-white cursor-pointer"
             />
             <span className="text-white">{rotationSpeed.toFixed(1)}x</span>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             {callouts.map((c) => (
               <button
                 key={c.id}
                 onClick={() => setActiveCallout(c.id)}
-                className={`px-2.5 py-1 rounded text-[10px] font-mono uppercase tracking-wider transition-colors border ${
+                className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider transition-colors border cursor-pointer ${
                   activeCallout === c.id
-                    ? 'bg-cyan-500/30 text-white border-cyan-500/60'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:text-white'
+                    ? 'bg-white text-charcoal border-white font-semibold'
+                    : 'bg-white/5 text-stone-light border-white/10 hover:text-white'
                 }`}
               >
                 {c.id}
@@ -532,9 +530,7 @@ export const TechnicalCutaway: React.FC = () => {
             ))}
           </div>
         </div>
-
       </div>
-
     </div>
   );
 };

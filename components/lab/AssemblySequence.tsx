@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Layers, Sliders, Shield, Cpu } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Layers, Sliders } from 'lucide-react';
 
 export const AssemblySequence: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -321,69 +320,69 @@ export const AssemblySequence: React.FC = () => {
   const currentStageInfo = stages[currentStep - 1] || stages[4];
 
   return (
-    <div className="relative rounded-2xl bg-surface-subtle border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+    <div className="relative rounded-2xl bg-[#181817] text-white border border-black/[0.1] shadow-editorial overflow-hidden flex flex-col">
       
       {/* Top Header */}
-      <div className="p-4 sm:p-5 border-b border-white/10 bg-surface/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+      <div className="p-5 sm:p-6 border-b border-white/[0.08] bg-[#141413] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-accent-olive" />
           <div>
-            <h4 className="font-display font-bold text-white text-base tracking-wide flex items-center gap-2">
-              Style 03 · Product Assembly Sequence
+            <h4 className="font-serif text-lg font-medium text-white tracking-wide">
+              Sequential Mechanism Kinematics
             </h4>
-            <span className="font-mono text-xs text-cyan-400/90 tracking-wider">
-              SEQUENTIAL 3D CAD EXPLODED VIEW // 5-STAGE KINEMATICS
+            <span className="font-mono text-xs text-stone-light tracking-wider">
+              5-Stage exploded assembly study & component interaction
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Badge variant="cyan" size="sm">
-            STAGE 0{currentStep} OF 05
-          </Badge>
-          <span className="text-[11px] font-mono text-slate-400 px-2 py-0.5 rounded bg-white/5 border border-white/10">
-            {currentStep === 5 ? 'FULLY ASSEMBLED' : 'SUB-ASSEMBLY'}
+        <div className="flex items-center gap-2 font-mono text-[11px]">
+          <span className="px-3 py-1 rounded-full bg-accent-olive/20 border border-accent-olive/40 text-stone-light">
+            Stage 0{currentStep} of 05
+          </span>
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-light">
+            {currentStep === 5 ? 'State: Fully Assembled' : 'State: Sub-Assembly'}
           </span>
         </div>
       </div>
 
       {/* Main 3D Canvas + Stage HUD */}
-      <div className="relative w-full h-[380px] sm:h-[440px] bg-[#06070a]">
+      <div className="relative w-full h-[380px] sm:h-[440px] bg-[#121211]">
         <div ref={mountRef} className="w-full h-full" />
 
         {/* Stage Progress HUD Bar */}
-        <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between gap-2 p-3 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md">
+        <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between gap-2 p-2 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
           {stages.map((s) => (
             <button
               key={s.step}
               onClick={() => setCurrentStep(s.step)}
-              className={`flex-1 py-1.5 px-2 rounded-lg font-mono text-[10px] sm:text-xs uppercase tracking-wider text-center transition-all ${
+              className={`flex-1 py-1.5 px-2 rounded-full font-mono text-[10px] sm:text-xs uppercase tracking-wider text-center transition-all cursor-pointer ${
                 currentStep === s.step
-                  ? 'bg-cyan-500/30 text-white border border-cyan-500/60 shadow-glow-cyan'
+                  ? 'bg-white text-charcoal font-semibold shadow-sm'
                   : currentStep > s.step
-                  ? 'bg-white/10 text-cyan-300 border border-white/10'
-                  : 'bg-white/5 text-slate-500 border border-transparent'
+                  ? 'bg-white/10 text-stone-light border border-white/10'
+                  : 'text-stone hover:text-stone-light'
               }`}
             >
-              <span className="hidden sm:inline">STAGE </span>0{s.step}
+              <span className="hidden sm:inline">Stage </span>0{s.step}
             </button>
           ))}
         </div>
 
         {/* Floating Active Stage Specs Card */}
-        <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md p-4 rounded-xl bg-surface/90 border border-cyan-500/30 backdrop-blur-md shadow-glow-cyan">
+        <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md p-4 rounded-xl bg-[#141413]/95 border border-white/10 backdrop-blur-md shadow-2xl">
           <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-[10px] font-mono text-cyan-400 uppercase tracking-wider">
-              <span>ACTIVE COMPONENT INSPECTOR</span>
-              <span>WT: {currentStageInfo.weight}</span>
+            <div className="flex items-center justify-between text-[10px] font-mono text-accent-olive uppercase tracking-wider">
+              <span>Active Sub-Assembly</span>
+              <span>Weight: {currentStageInfo.weight}</span>
             </div>
-            <h5 className="font-display font-bold text-white text-sm sm:text-base">
+            <h5 className="font-serif text-sm font-medium text-white">
               {currentStageInfo.title}
             </h5>
-            <div className="text-xs font-mono text-slate-300">
-              <span className="text-slate-400">MATERIAL:</span> {currentStageInfo.material}
+            <div className="text-xs font-mono text-stone-light">
+              <span className="text-stone">Material:</span> {currentStageInfo.material}
             </div>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
+            <p className="text-xs text-stone-light font-light leading-relaxed">
               {currentStageInfo.spec}
             </p>
           </div>
@@ -391,14 +390,14 @@ export const AssemblySequence: React.FC = () => {
       </div>
 
       {/* Control Bar */}
-      <div className="p-4 sm:p-5 border-t border-white/10 bg-surface/90 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#141413] flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Step Prev / Next / Auto-Play / Reset */}
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setCurrentStep((prev) => Math.max(1, prev - 1))}
             disabled={currentStep === 1}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white disabled:opacity-40 border border-white/10"
+            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-stone-light hover:text-white disabled:opacity-30 border border-white/10 cursor-pointer"
             aria-label="Previous step"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -406,16 +405,16 @@ export const AssemblySequence: React.FC = () => {
 
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors border border-white/10 cursor-pointer"
           >
-            {isPlaying ? <Pause className="w-3.5 h-3.5 text-cyan-400" /> : <Play className="w-3.5 h-3.5 text-cyan-400" />}
+            {isPlaying ? <Pause className="w-3.5 h-3.5 text-stone-light" /> : <Play className="w-3.5 h-3.5 text-stone-light" />}
             {isPlaying ? 'Pause Sequence' : 'Auto-Play CAD'}
           </button>
 
           <button
             onClick={() => setCurrentStep((prev) => Math.min(5, prev + 1))}
             disabled={currentStep === 5}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white disabled:opacity-40 border border-white/10"
+            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-stone-light hover:text-white disabled:opacity-30 border border-white/10 cursor-pointer"
             aria-label="Next step"
           >
             <ChevronRight className="w-4 h-4" />
@@ -426,15 +425,15 @@ export const AssemblySequence: React.FC = () => {
               setCurrentStep(1);
               setSeparationFactor(0.0);
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white font-mono text-xs uppercase border border-white/10"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-stone-light hover:text-white font-mono text-xs uppercase border border-white/10 cursor-pointer"
           >
             <RotateCcw className="w-3 h-3" /> Reset
           </button>
         </div>
 
         {/* Explode Distance Slider */}
-        <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
-          <Sliders className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="flex items-center gap-3 text-xs font-mono text-stone-light">
+          <Sliders className="w-3.5 h-3.5 text-stone-light" />
           <span>EXPLODE OFFSET:</span>
           <input
             type="range"
@@ -443,7 +442,7 @@ export const AssemblySequence: React.FC = () => {
             step="0.05"
             value={separationFactor}
             onChange={(e) => setSeparationFactor(parseFloat(e.target.value))}
-            className="w-28 accent-cyan-400 cursor-pointer"
+            className="w-28 accent-white cursor-pointer"
           />
           <span className="text-white">{Math.round(separationFactor * 100)}%</span>
         </div>
