@@ -1,30 +1,72 @@
-# Syed Ismaiel — Portfolio
+# Syed Ismaiel — Personal Brand & Engineering Portfolio
 
-A static, responsive portfolio with an editorial visual system, accessible interactions, and no build step.
+> **Engineer · Product Builder · Founder**  
+> BTech in Artificial Intelligence & Machine Learning — Vidyavardhaka College of Engineering (VVCE), Mysuru, Karnataka, India.
 
-## Project structure
+A high-performance digital portfolio engineered from scratch with Next.js 14, TypeScript, Tailwind CSS, and Three.js. Designed to represent technical rigor, systems architecture, 3D visualization, and founder ambition.
 
-- `index.html` — page content, project descriptions, links, and metadata
-- `assets/css/styles.css` — layout, typography, colors, responsive rules
-- `assets/js/main.js` — mobile navigation and dynamic footer year
-- `assets/images/` — personal photographs (add the two originals here)
+---
 
-## Run locally
+## 🏛️ Architecture & Tech Stack
 
-Open `index.html` directly, or serve the folder with any static file server. For example, from this directory run `python -m http.server 8000` and visit `http://localhost:8000`.
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, Static Export)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom dark tokens & hairline glassmorphism
+- **3D Graphics & Simulation**: [Three.js](https://threejs.org/) & WebGL
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Visual Reference**: High-contrast editorial aesthetic inspired by cinematic dark-mode presentations and technical CAD interfaces.
 
-## Replace the photographs
+---
 
-The two original PNGs are in `assets/images/ismaiel-portrait.png` (hero) and `assets/images/ismaiel-editorial.png` (About section). Replace those files to change photos, or update the two `<img>` `src` values in `index.html`. Keep the originals' aspect ratios; the page uses `object-fit: cover` and section-specific framing.
+## 🚀 Core Sections
 
-## Edit content
+1. **Hero**: Oversized editorial typography (`SYED ISMAIEL°`), official portrait (`public/images/black.png`), real-time coordinate badge (`12.3118° N, 76.6529° E · Mysuru, KA`), and interactive 3D iridescent Möbius energy loop.
+2. **Table of Contents**: Modular 6-card index navigation (`01/About`, `02/Selected Work`, `03/Engineering Lab`, `04/Capabilities`, `05/Journey`, `06/Contact`) with glow badges.
+3. **About**: Side-by-side editorial layout exploring the intersection of Engineering, Technology, Business, Creativity, Product Development, and Entrepreneurship.
+4. **Selected Work (4 Real Projects)**:
+   - **FixBazaar** (Founder & CEO): Hyperlocal on-demand home services marketplace for Mysuru (React Native, Expo, Next.js, Supabase, PostgreSQL).
+   - **Complaint Management System** (Full-Stack Developer): Tri-tier municipal grievance platform with role-based access and Chart.js analytics (Python, Flask, MySQL, SQLAlchemy).
+   - **Unique Diagnostic Centre (UDC)** (Full-Stack Developer): Clinical laboratory workflow and patient report delivery management (Next.js, React, TypeScript, Supabase).
+   - **The Last Bell** (Solo Game Developer & Designer): Atmospheric survival FPS game concept with dynamic acoustic stealth (Unity 6.3 LTS, C#, URP).
+5. **Engineering Visual Lab (4 Signature Interactive Demonstrations)**:
+   - **Style 01 · 3D Technical Cutaway**: Interactive 3D axial turbine with cutaway casing, aerodynamic rotor stages, stator vanes, internal airflow particles, speed slider, and component callouts.
+   - **Style 02 · Telemetry & Motion Infographic**: Real-time multi-channel oscilloscope, dynamic FFT frequency spectrum density analyzer, and live gauges (RPM, Thermal, Pressure, Strain G-force).
+   - **Style 03 · Product CAD Assembly**: 5-stage sequential exploded-view CAD kinematics with step playback and component material inspection.
+   - **Style 04 · Physics & Simulation Visualization**: Navier-Stokes compliant particle fluid dynamics with interactive mouse vortex deflector and scientific false-color maps (Plasma, Viridis, Thermal, Cyan).
+6. **Capabilities**: Verified technical matrix across Programming Languages, Frontend & Mobile, Backend & Databases, Specialized Engines, and Interdisciplinary Disciplines.
+7. **My Journey**: Verified chronological milestones from VVCE Mysuru AIML studies to system engineering and founding FixBazaar.
+8. **Contact & Footer**: Direct transmission interface with client-side validation, live Indian Standard Time (IST) Mysuru clock, verified GitHub (`ismaiel10`), and LinkedIn connections.
 
-Update the introduction and About copy directly in `index.html`. Each project is a separate `<article>` in `#projects`; its visible summary, current status, role, expandable details, technology list, and any real external link live together. Keep status language current and remove links that do not exist. LinkedIn and GitHub URLs are in the Contact section.
+---
 
-## Change fonts and colors
+## 🛠️ Local Development
 
-Edit the CSS variables at the top of `assets/css/styles.css`. The current system uses DM Serif Display for editorial headlines, DM Sans for body text, and Pinyon Script sparingly for the signature. Google Fonts are optional; the CSS includes local system fallbacks.
+```bash
+# Clone the repository
+git clone https://github.com/ismaiel10/myPortfolio.git
+cd myPortfolio
 
-## Deploy updates
+# Install dependencies
+npm install
 
-This is a static site. Publish the project root with GitHub Pages, Vercel, Netlify, or another static host. No build command is required. Commit and push updates to the configured repository, then let the hosting provider publish the new version.
+# Run the development server
+npm run dev
+
+# Open http://localhost:3000 in your browser
+```
+
+## 📦 Production Build & Export
+
+```bash
+# Generate optimized production build and static HTML export to /out
+npm run build
+```
+
+---
+
+## 👤 Syed Ismaiel
+
+- **GitHub**: [https://github.com/ismaiel10](https://github.com/ismaiel10)
+- **LinkedIn**: [https://www.linkedin.com/in/syed-ismaiel-616645330](https://www.linkedin.com/in/syed-ismaiel-616645330)
+- **Email**: [sydismaiel10@gmail.com](mailto:sydismaiel10@gmail.com)
+- **Location**: Mysuru, Karnataka, India

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#070709"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="#2563EB" stroke-opacity="0.4"/>
+  <text x="7" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF">SI</text>
+  <circle cx="24" cy="11" r="2.5" fill="#06B6D4"/>
+</svg>
